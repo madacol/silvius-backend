@@ -1,3 +1,13 @@
+Silvius Backend
+===============
+
+This is an essentially unmodified clone of Tanel Alumae's
+kaldi-gstreamer-server. Follow the setup instructions below, download Tedlium
+models, and use the config file silvius-tedlium.yaml for workers.
+
+For the silvius client, see https://github.com/dwks/silvius .
+
+
 Kaldi GStreamer server
 ======================
 [![GitHub license](https://img.shields.io/github/license/alumae/kaldi-gstreamer-server.svg)](https://github.com/alumae/kaldi-gstreamer-server/blob/master/LICENSE)
