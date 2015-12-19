@@ -30,8 +30,8 @@ current model directory so I would not have to keep changing the config file.
 The only other step which must be made is to convert the config files to use
 local paths, i.e. search and replace in the model/conf/* files (sed -i):
 
-sed -i 's|/export/a12/...|test/models/english/tedlium-N|' \
-    test/models/english/tedlium-N/conf/*
+    sed -i 's|/export/a12/...|test/models/english/tedlium-N|' \
+        test/models/english/tedlium-N/conf/*
 
 That's it. I recommend mixing language models on a server in the background as
 it takes significant RAM.
