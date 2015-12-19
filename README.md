@@ -5,9 +5,9 @@ For the silvius client, see https://github.com/dwks/silvius .
 
 This is an essentially unmodified clone of Tanel Alumae's
 kaldi-gstreamer-server. In short, to run a Silvius server, first compile Kaldi
-with ./configure --shared. This can be an unmodified version of Kaldi. Then
-compile the gst-plugin with "make ext" in src/, and set the environment
-variable GST_PLUGIN_PATH to point at kaldi/src/gst-plugin. Finally, run one
+with ./configure --shared. This can be an unmodified version of Kaldi. Then set
+KALDI_ROOT, clone and compile gst-kaldi-nnet2-online, and set the environment
+variable GST_PLUGIN_PATH to point at its src/ directory. Finally, run one
 master server and at least one worker. For more detailed instructions, see
 below. The built-in Tedlium example can be used as an uncustomized model.
 
