@@ -7,17 +7,26 @@ decoder:
     # All the properties nested here correspond to the kaldinnet2onlinedecoder GStreamer plugin properties.
     # Use gst-inspect-1.0 ./libgstkaldionline2.so kaldinnet2onlinedecoder to discover the available properties
     use-threaded-decoder:  true
-    model : test/models/english/tedlium_nnet_ms_sp_online/final.mdl
-    word-syms : test/models/english/tedlium_nnet_ms_sp_online/words.txt
-    fst : test/models/english/tedlium_nnet_ms_sp_online/HCLG.fst
+    #word-syms : test/models/english/tedlium_nnet_ms_sp_online/words.txt
+    word-syms : test/models/english/tedlium-latest/words.txt
+
+    #model : test/models/english/tedlium_nnet_ms_sp_online/final.mdl
+    #fst : test/models/english/tedlium_nnet_ms_sp_online/HCLG.fst
+    #model : test/models/english/tedlium_nnet_ms_sp_online/final-mix-5.mdl
+    #fst : test/models/english/tedlium_nnet_ms_sp_online/HCLG-mix-5.fst
+    model : test/models/english/tedlium-latest/final.mdl
+    fst : test/models/english/tedlium-latest/HCLG.fst
+
     #word-syms : test/models/english/restricted/words.txt
     #fst : test/models/english/restricted/HCLG.fst
 
-    mfcc-config : test/models/english/tedlium_nnet_ms_sp_online/conf/mfcc.conf
-    ivector-extraction-config : test/models/english/tedlium_nnet_ms_sp_online/conf/ivector_extractor.conf
+    #mfcc-config : test/models/english/tedlium_nnet_ms_sp_online/conf/mfcc.conf
+    #ivector-extraction-config : test/models/english/tedlium_nnet_ms_sp_online/conf/ivector_extractor.conf
+    mfcc-config : test/models/english/tedlium-latest/conf/mfcc.conf
+    ivector-extraction-config : test/models/english/tedlium-latest/conf/ivector_extractor.conf
     max-active: 10000
     beam: 10.0
-    lattice-beam: 6.0
+    lattice-beam: 6.0  # originally 6
     acoustic-scale: 0.083
     do-endpointing : true
     endpoint-silence-phones : "1:2:3:4:5:6:7:8:9:10"
