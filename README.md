@@ -11,15 +11,18 @@ variable GST_PLUGIN_PATH to point at kaldi/src/gst-plugin. Finally, run one
 master server and at least one worker. For more detailed instructions, see
 below. The built-in Tedlium example can be used as an uncustomized model.
 
-To customize language models, clone silvius-kaldi and compile Kaldi normally.
-My only additions are new scripts in the egs/ directory, so you may want to
-merge with Kaldi master first. Then go to egs/tedlium/silvius and execute
-run.sh. This downloads a pre-trained Tedlium online nnet2 model. It reads
-corpus.txt and mixes it with the Cantab LM (mix-lm.sh), then converts to G.fst
-(local/prepare_lm.sh), then compiles a new HCLG.fst (mix-hclg.fst). Finally, it
-makes a new directory under model/ (the first time it creates directory 1, then
-directory 2, etc). Just replace corpus.txt with new 1-grams to customize the
-model differently.
+A customized model for silvius v1.0 is currently available here:
+http://voxhub.io/static/archive/silvius-tedlium-v1.0.tar.gz
+
+To build customized language models, clone silvius-kaldi and compile Kaldi
+normally. My only additions are new scripts in the egs/ directory, so you may
+want to merge with Kaldi master first. Then go to egs/tedlium/silvius and
+execute run.sh. This downloads a pre-trained Tedlium online nnet2 model. It
+reads corpus.txt and mixes it with the Cantab LM (mix-lm.sh), then converts to
+G.fst (local/prepare_lm.sh), then compiles a new HCLG.fst (mix-hclg.fst).
+Finally, it makes a new directory under model/ (the first time it creates
+directory 1, then directory 2, etc). Just replace corpus.txt with new 1-grams
+to customize the model differently.
 
 This model can be copied directly to the server's directory and referred to
 with silvius-tedlium.yaml. I set up a symlink tedlium-latest to point at the
