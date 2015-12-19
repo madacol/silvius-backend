@@ -1,11 +1,37 @@
 Silvius Backend
 ===============
 
-This is an essentially unmodified clone of Tanel Alumae's
-kaldi-gstreamer-server. Follow the setup instructions below, download Tedlium
-models, and use the config file silvius-tedlium.yaml for workers.
-
 For the silvius client, see https://github.com/dwks/silvius .
+
+This is an essentially unmodified clone of Tanel Alumae's
+kaldi-gstreamer-server. In short, to run a Silvius server, first compile Kaldi
+with ./configure --shared. This can be an unmodified version of Kaldi. Then
+compile the gst-plugin with "make ext" in src/, and set the environment
+variable GST_PLUGIN_PATH to point at kaldi/src/gst-plugin. Finally, run one
+master server and at least one worker. For more detailed instructions, see
+below. The built-in Tedlium example can be used as an uncustomized model.
+
+To customize language models, clone silvius-kaldi and compile Kaldi normally.
+My only additions are new scripts in the egs/ directory, so you may want to
+merge with Kaldi master first. Then go to egs/tedlium/silvius and execute
+run.sh. This downloads a pre-trained Tedlium online nnet2 model. It reads
+corpus.txt and mixes it with the Cantab LM (mix-lm.sh), then converts to G.fst
+(local/prepare_lm.sh), then compiles a new HCLG.fst (mix-hclg.fst). Finally, it
+makes a new directory under model/ (the first time it creates directory 1, then
+directory 2, etc). Just replace corpus.txt with new 1-grams to customize the
+model differently.
+
+This model can be copied directly to the server's directory and referred to
+with silvius-tedlium.yaml. I set up a symlink tedlium-latest to point at the
+current model directory so I would not have to keep changing the config file.
+The only other step which must be made is to convert the config files to use
+local paths, i.e. search and replace in the model/conf/* files (sed -i):
+
+sed -i 's|/export/a12/...|test/models/english/tedlium-N|' \
+    test/models/english/tedlium-N/conf/*
+
+That's it. I recommend mixing language models on a server in the background as
+it takes significant RAM.
 
 
 Kaldi GStreamer server
