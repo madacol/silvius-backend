@@ -24,7 +24,7 @@ class DecoderPipeline2(object):
         self.create_pipeline(conf)
         self.outdir = conf.get("out-dir", None)
         if not os.path.exists(self.outdir):
-            os.mkdir(self.outdir)
+            os.makedirs(self.outdir)
         elif not os.path.isdir(self.outdir):
             raise Exception("Output directory %s already exists as a file" % self.outdir)
 
@@ -52,7 +52,13 @@ class DecoderPipeline2(object):
         if "use-threaded-decoder" in conf["decoder"]:
             self.asr.set_property("use-threaded-decoder", conf["decoder"]["use-threaded-decoder"])
 
-        for (key, val) in conf.get("decoder", {}).iteritems():
+        decoder_config = conf.get("decoder", {})
+        if 'nnet-mode' in decoder_config:
+          logger.info("Setting decoder property: %s = %s" % ('nnet-mode', decoder_config['nnet-mode']))
+          self.asr.set_property('nnet-mode', decoder_config['nnet-mode'])
+          del decoder_config['nnet-mode']
+
+        for (key, val) in decoder_config.iteritems():
             if key != "use-threaded-decoder":
                 logger.info("Setting decoder property: %s = %s" % (key, val))
                 self.asr.set_property(key, val)
@@ -110,12 +116,12 @@ class DecoderPipeline2(object):
     def _on_partial_result(self, asr, hyp):
         logger.info("%s: Got partial result: %s" % (self.request_id, hyp.decode('utf8')))
         if self.result_handler:
-            self.result_handler(hyp, False)
+            self.result_handler(hyp.decode('utf8'), False)
 
     def _on_final_result(self, asr, hyp):
         logger.info("%s: Got final result: %s" % (self.request_id, hyp.decode('utf8')))
         if self.result_handler:
-            self.result_handler(hyp, True)
+            self.result_handler(hyp.decode('utf8'), True)
 
     def _on_full_final_result(self, asr, result_json):
         logger.info("%s: Got full final result: %s" % (self.request_id, result_json.decode('utf8')))

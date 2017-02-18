@@ -66,6 +66,13 @@ Estonian demo: http://bark.phon.ioc.ee/dikteeri/
 
 Changelog
 ---------
+  * 2016-11-28: Server now supports serving requests using SSL. SSL is automatically turned on when the `certfile` and `keyfile` command line arguments are specified.
+
+  * 2016-10-14: Support for nnet3 (including 'chain') models, thanks to @yifan! Not tested very carefully.
+  Set the `decoder->nnet-mode` property to 3 to use nnet3 models. 
+
+  * 2016-10-06: added a sample conf for Librispeech models and the corresponding model download script (thanks to @skoocda)
+
   * 2015-12-04: added a link to the Dockerfile.
 
   * 2015-06-30: server now uses the recently added "full final results" functionality of gst-kaldi-nnet2-online.
@@ -208,7 +215,9 @@ Follow the instuctions and compile it. This should result in a file `~/tools/gst
 Also, download the DNN-based models for English, trained on the TEDLIUM speech corpus and combined with a generic English language model
 provided by Cantab Research. Run the `download-tedlium-nnet2.sh` under `test/models` to download the models (attention, 1.5 GB):
 
+    cd test/models 
     ./test/models/download-tedlium-nnet2.sh
+    cd ../../
 
 Before starting a worker, make sure that the GST plugin path includes the path where the `libgstkaldionline2.so` library you compiled earlier
 resides, something like:
@@ -379,7 +388,7 @@ described (available here: http://ebooks.iospress.nl/volumearticle/37996):
       title="Full-duplex Speech-to-text System for {Estonian}",
       booktitle="Baltic HLT 2014",
       year=2014,
-      address="Kaunas, Lihtuania"
+      address="Kaunas, Lithuania"
     }
 
 Of course, you should also acknowledge Kaldi, which does all the hard work.
