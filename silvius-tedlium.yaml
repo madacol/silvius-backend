@@ -1,29 +1,20 @@
 # Modified for silvius by DWK
 
-# You have to download TEDLIUM "online nnet2" models in order to use this sample
-# Run download-tedlium-nnet2.sh in 'test/models' to download them.
 use-nnet2: True
 decoder:
     # All the properties nested here correspond to the kaldinnet2onlinedecoder GStreamer plugin properties.
     # Use gst-inspect-1.0 ./libgstkaldionline2.so kaldinnet2onlinedecoder to discover the available properties
     use-threaded-decoder:  true
-    #word-syms : test/models/english/tedlium_nnet_ms_sp_online/words.txt
-    word-syms : test/models/english/tedlium-latest/words.txt
+    word-syms : models/latest/words.txt
 
-    #model : test/models/english/tedlium_nnet_ms_sp_online/final.mdl
-    #fst : test/models/english/tedlium_nnet_ms_sp_online/HCLG.fst
-    #model : test/models/english/tedlium_nnet_ms_sp_online/final-mix-5.mdl
-    #fst : test/models/english/tedlium_nnet_ms_sp_online/HCLG-mix-5.fst
-    model : test/models/english/tedlium-latest/final.mdl
-    fst : test/models/english/tedlium-latest/HCLG.fst
+    model : models/latest/final.mdl
+    fst : models/latest/HCLG.fst
 
     #word-syms : test/models/english/restricted/words.txt
     #fst : test/models/english/restricted/HCLG.fst
 
-    #mfcc-config : test/models/english/tedlium_nnet_ms_sp_online/conf/mfcc.conf
-    #ivector-extraction-config : test/models/english/tedlium_nnet_ms_sp_online/conf/ivector_extractor.conf
-    mfcc-config : test/models/english/tedlium-latest/conf/mfcc.conf
-    ivector-extraction-config : test/models/english/tedlium-latest/conf/ivector_extractor.conf
+    mfcc-config : models/latest/conf/mfcc.conf
+    ivector-extraction-config : models/latest/conf/ivector_extractor.conf
     max-active: 10000
     beam: 10.0
     lattice-beam: 6.0  # originally 6
@@ -44,12 +35,10 @@ out-dir: tmp
 use-vad: False
 silence-timeout: 30
 
-# Just a sample post-processor that appends "." to the hypothesis
-#post-processor: perl -npe 'BEGIN {use IO::Handle; STDOUT->autoflush(1);} s/(.*)/\1./;'
+# Hypothesis post-processor that does nothing
 post-processor: perl -npe 'BEGIN {use IO::Handle; STDOUT->autoflush(1);}'
 
-# A sample full post processor that add a confidence score to 1-best hyp and deletes other n-best hyps
-#full-post-processor: ./sample_full_post_processor.py
+# The Silvius post-processor
 full-post-processor: ./silvius_post_processor.py
 
 logging:
