@@ -9,10 +9,12 @@ with ./configure --shared. This can be an unmodified version of Kaldi. Then set
 KALDI_ROOT, clone and compile gst-kaldi-nnet2-online, and set the environment
 variable GST_PLUGIN_PATH to point at its src/ directory. Finally, run one
 master server and at least one worker. For more detailed instructions, see
-below. The built-in Tedlium example can be used as an uncustomized model.
+the INSTALL file.
 
-A customized model for silvius v1.0 is currently available here:
+The built-in Tedlium example can be used as an uncustomized model. A customized
+model for silvius v1.0 is currently available here:
 http://voxhub.io/static/archive/silvius-tedlium-v1.0.tar.gz
+This will be downloaded by the silvius-tedlium-v1.0.sh script in models/.
 
 To build customized language models, clone silvius-kaldi and compile Kaldi
 normally. My only additions are new scripts in the egs/ directory, so you may
