@@ -17,7 +17,7 @@ for file in $model/conf/*.conf; do
     echo "fixing $file..."
     /bin/cp $file $file.orig
     for option in "${options[@]}"; do
-        perl -i -pe "s{^$option=.*/(ivector_extractor|conf/[^/]+)}{$option=models/$model/\$1}" $file
+        perl -i -pe "s{^$option=.*(ivector_extractor|conf/[^/]+)}{$option=models/$model/\$1}" $file
     done
 done
 
