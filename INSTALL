@@ -48,9 +48,9 @@ cd ..
     python kaldigstserver/master_server.py
 
     # to run a worker (connects to master on localhost):
-    GST_PLUGIN_PATH=~/gst-kaldi-nnet2-online/src/
+    export GST_PLUGIN_PATH=~/gst-kaldi-nnet2-online/src/
     python kaldigstserver/worker.py -c ./silvius-tedlium.yaml
 
     # to run a worker using the voxhub master server:
-    GST_PLUGIN_PATH=~/gst-kaldi-nnet2-online/src/
+    export GST_PLUGIN_PATH=~/gst-kaldi-nnet2-online/src/
     python kaldigstserver/worker.py -c ./silvius-tedlium.yaml -u ws://silvius-server.voxhub.io:8019/worker/ws/speech

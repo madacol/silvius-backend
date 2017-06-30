@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 options=(
     --splice-config --cmvn-config --lda-matrix --global-cmvn-stats
