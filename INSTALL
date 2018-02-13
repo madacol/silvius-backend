@@ -13,18 +13,21 @@ sudo apt-get install libatlas3-base
 sudo ln -s -f /bin/bash /bin/sh  # :( not sure if this is actually required
 ./extras/check_dependencies.sh  # make sure this is satisfied now
 
-make -j 4  # in tools/. if it fails, run without -j
+make -j 4  # -j indicates how many CPU cores to use. if it fails, run without -j
 
 cd ../src
 ./configure --shared  # --shared is necessary for gst-kaldi-nnet2-online
 make depend -j 4 ; make -j 4  # this may take >30 min
+
+cd gst-plugin
+make depend -j 4 ; make -j 4
 
 2. Build gst-kaldi-nnet2-online
 sudo apt-get install libgstreamer1.0-dev
 
 cd ~/
 git clone https://github.com/dwks/gst-kaldi-nnet2-online.git
-cd gst-kaldi-nnet2-online
+cd gst-kaldi-nnet2-online/src
 export KALDI_ROOT=~/kaldi/
 export FSTROOT=~/kaldi/tools/openfst/
 make depend ; make
