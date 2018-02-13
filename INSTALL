@@ -20,7 +20,7 @@ cd ../src
 make depend -j 4 ; make -j 4  # this may take >30 min
 
 2. Build gst-kaldi-nnet2-online
-sudo apt-get install libgstreamer1.0-dev
+sudo apt-get install libgstreamer1.0-dev libjansson-dev
 
 cd ~/
 git clone https://github.com/dwks/gst-kaldi-nnet2-online.git
