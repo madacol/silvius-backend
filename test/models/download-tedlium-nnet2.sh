@@ -5,3 +5,4 @@ TMP_FILE="/tmp/nnet2_model.tgz"
 
 curl -C - -o $TMP_FILE $BASE_URL
 tar -zxvf $TMP_FILE
+rm $TMP_FILE
